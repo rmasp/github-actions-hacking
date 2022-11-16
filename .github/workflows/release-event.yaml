@@ -22,12 +22,12 @@ jobs:
         id: build-tag-push
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          VERSION_TAG: ${{ github.event.tag_name }}
+          GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
-          echo $REGISTRY
-          echo $GITHUB_SHA
-          echo $VERSION_TAG
-          echo $GITHUB_REF_NAME
+          echo REGISTRY: $REGISTRY
+          echo GITHUB_SHA: $GITHUB_SHA
+          echo GITHUB_REF_NAME: $GITHUB_REF_NAME
+          echo GITHUB_CONTEXT: $GITHUB_CONTEXT
           
       - name: checkout
         uses: actions/checkout@v2
