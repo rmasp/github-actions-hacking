@@ -22,12 +22,12 @@ jobs:
         id: build-tag-push
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ GITHUB_SHA }}
           VERSION_TAG: ${{ github.event.tag_name }}
         run: |
           echo $REGISTRY
-          echo $IMAGE_TAG
+          echo $GITHUB_SHA
           echo $VERSION_TAG
+          echo $GITHUB_REF_NAME
           
       - name: checkout
         uses: actions/checkout@v2
